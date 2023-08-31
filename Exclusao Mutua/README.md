@@ -11,3 +11,11 @@ Realizar a implementação em linguaguem C ou C++ do funcionamento de um semafor
 ## Funcionamento do Código
 
 adicionar funcionamento...
+
+## Referências
+
+* [Mutex Objects](https://learn.microsoft.com/en-us/windows/win32/sync/mutex-objects)
+* [Using Mutex Objects](https://learn.microsoft.com/en-us/windows/win32/sync/using-mutex-objects)
+* [CreateThread function](https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createthread)
+* [CreateMutex function](https://learn.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-createmutexa)
+* [WaitForMultipleObjects function](https://learn.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-waitformultipleobjects)
