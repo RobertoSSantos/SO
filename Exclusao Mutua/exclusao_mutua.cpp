@@ -2,10 +2,11 @@
 # include <stdio.h>
 # include <windows.h>
 //Define o numero maximo de threads
-#define THREADCOUNT 60
+#define THREADCOUNT 100
 
 // Funcao global de Referencia
 int global_var = 0;
+
 // Handle do mutex
 HANDLE mutex;
 
@@ -27,8 +28,8 @@ int main(){
 
     // Criando as threads
     for(int i = 0; i < THREADCOUNT; i++){
-        aThread[i] = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)addition, NULL, 0, NULL);
-        sThread[i] = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)subtraction, NULL, 0, NULL);
+        aThread[i] = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)subtraction, NULL, 0, NULL);
+        sThread[i] = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)addition, NULL, 0, NULL);
 
         if( aThread[i] == NULL || sThread[i] == NULL ) {
             printf("CreateThread error");
@@ -37,10 +38,8 @@ int main(){
     }
 
     // Espera todas as threads terminarem
-    WaitForMultipleObjects(THREADCOUNT, aThread, TRUE, INFINITE);
-    WaitForMultipleObjects(THREADCOUNT, sThread, TRUE, INFINITE);
-
-    printf("Global var: %d\n", global_var);
+    SuspendThread(GetCurrentThread());
+    
 
     // Fechando as threads e mutex
     for(int i = 0; i < THREADCOUNT; i++){
@@ -50,12 +49,13 @@ int main(){
 
     CloseHandle(mutex);
 
+    printf("Final var: %d\n", global_var);
+
     return 0;
 }
 
 void subtraction(){
     DWORD waitResult;
-
 
     waitResult = WaitForSingleObject(mutex, INFINITE);
 
@@ -65,7 +65,7 @@ void subtraction(){
             int local_var;
             local_var = global_var;
             local_var--;
-            Sleep(100);
+            Sleep(1);
             global_var = local_var;
             printf("Global var: %d\n", global_var);
             
@@ -95,7 +95,7 @@ void addition(){
             int local_var;
             local_var = global_var;
             local_var++;
-            Sleep(100);
+            Sleep(1);
             global_var = local_var;
             printf("Global var: %d\n", global_var);
 
