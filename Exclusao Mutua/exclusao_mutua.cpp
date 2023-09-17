@@ -37,16 +37,7 @@ int main(){
         }
     }
 
-    // Espera todas as threads terminarem
-    SuspendThread(GetCurrentThread());
-    
-
-    // Fechando as threads e mutex
-    for(int i = 0; i < THREADCOUNT; i++){
-        CloseHandle(aThread[i]);
-        CloseHandle(sThread[i]);
-    }
-
+    Sleep(5000);
     CloseHandle(mutex);
 
     printf("Final var: %d\n", global_var);
