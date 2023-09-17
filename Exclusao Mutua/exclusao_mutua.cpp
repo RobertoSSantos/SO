@@ -1,4 +1,4 @@
-// Team: Alexandre Del Raso, Pedro Martins, Roberto Santos
+// Team: Alexandre Del Raso, Pedro Martins, Roberto Santos 
 # include <stdio.h>
 # include <windows.h>
 //Define o numero maximo de threads
