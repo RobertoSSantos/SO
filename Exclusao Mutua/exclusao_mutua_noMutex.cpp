@@ -20,10 +20,9 @@ int main() {
 
     }
 
-    // Suspende a thread 
-    SuspendThread(GetCurrentThread());
+    Sleep(5000);
 
-    printf("Global var: %d\n", global_var);
+    printf("Final var: %d\n", global_var);
 
     return 0;
 }
